@@ -2,6 +2,7 @@
     const element = $(this);
     const throwableElement = element.clone();
     element.css("visibility", "hidden");
+    throwableElement.css("z-index", 2147483647);
     throwableElement.insertBefore(element);
     throwableElement.throwable({
       bounce: 0.5,
