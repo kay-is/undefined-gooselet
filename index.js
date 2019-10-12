@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v23...");
+console.log("Initializing", undefined, "gooselet v24...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
