@@ -1,10 +1,9 @@
-console.log("Initializing", undefined, "gooselet v10...");
+console.log("Initializing", undefined, "gooselet v11...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
     const isVideo = element.nodeName == "VIDEO";
     if(isVideo) videoTime = element.currentTime;
-
     const jqElement = $(element);
     const clonedJqElement = jqElement.clone();
     jqElement.css("visibility", "hidden");
