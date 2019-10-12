@@ -1,16 +1,16 @@
-console.log("Initializing", undefined, "gooselet v12...");
+console.log("Initializing", undefined, "gooselet v13...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
     const isVideo = element.nodeName == "VIDEO";
-    if(isVideo) videoTime = element.currentTime;
+    if (isVideo) videoTime = element.currentTime;
     const jqElement = $(element);
     const clonedJqElement = jqElement.clone();
     jqElement.css("visibility", "hidden");
     clonedJqElement.css("z-index", 2147483647);
     clonedJqElement.insertBefore(jqElement);
     clonedJqElement.throwable({ bounce: 0.6, damping: 75 });
-    if(isVideo) {
+    if (isVideo) {
       const videoElement = clonedJqElement[0];
       videoElement.currentTime = videoTime;
       videoElement.removeAttribute("controls");
@@ -47,22 +47,39 @@ console.log("Initializing", undefined, "gooselet v12...");
     console.log("Visible <img>s found: " + validImgs.length);
     return validImgs;
   }
-  
+
   function getValidVideos() {
-    const validVideos = [...document.querySelectorAll("video")].filter(isVisible);
+    const validVideos = [...document.querySelectorAll("video")].filter(
+      isVisible
+    );
     console.log("Visible <video>s found: " + validVideos.length);
     return validVideos;
   }
 
+  function getValidCanvas() {
+    const validCanvas = [...document.querySelectorAll("canvas")].filter(
+      isVisible
+    );
+    console.log("Visible <video>s found: " + validCanvas.length);
+    return validCanvas;
+  }
+
   document.body.style.cursor = `url("https://kay-is.github.io/undefined-gooselet/goose.png"), default`;
 
-  const honk = new Audio("https://kay-is.github.io/undefined-gooselet/honk.mp3");
+  const honk = new Audio(
+    "https://kay-is.github.io/undefined-gooselet/honk.mp3"
+  );
   document.oncontextmenu = () => {
     honk.play();
     return false;
   };
-  
-  [...getValidDivs(), ...getValidImgs(), ...getValidVideos()].forEach(makeThrowable);
+
+  [
+    ...getValidDivs(),
+    ...getValidImgs(),
+    ...getValidVideos(),
+    ...getValidCanvas()
+  ].forEach(makeThrowable);
 
   console.log(undefined, "gooselet initialized!");
 })();
