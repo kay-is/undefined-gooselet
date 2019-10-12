@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v5...");
+console.log("Initializing", undefined, "gooselet v6...");
 (function() {
   function makeThrowable(element) {
     const jqElement = $(element);
@@ -45,7 +45,7 @@ console.log("Initializing", undefined, "gooselet v5...");
     return validVideos;
   }
 
-  [...getValidDivs(), ...getValidImgs()].forEach(makeThrowable);
+  [...getValidDivs(), ...getValidImgs(), ...getValidVideos()].forEach(makeThrowable);
 
   document.body.style.cursor = `url("https://kay-is.github.io/undefined-gooselet/goose.png"), default`;
 
