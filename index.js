@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v21...");
+console.log("Initializing", undefined, "gooselet v22...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -17,7 +17,6 @@ console.log("Initializing", undefined, "gooselet v21...");
       damping: 100,
       collisionDectection: true
     });
-    clonedJqElement[0].isThrowable = true;
     if (isVideo) {
       const videoElement = clonedJqElement[0];
       videoElement.currentTime = videoTime;
@@ -45,10 +44,6 @@ console.log("Initializing", undefined, "gooselet v21...");
 
   function hasBackgroundImage(element) {
     return window.getComputedStyle(element, false).backgroundImage.match(/url/);
-  }
-
-  function notThrowable(element) {
-    return !element.isThrowable;
   }
   
   function getValidDivs() {
@@ -93,24 +88,13 @@ console.log("Initializing", undefined, "gooselet v21...");
     return false;
   };
 
-  function patchElements() {
-    console.log("Patching elements...");
-    [
-      ...getValidDivs(),
-      ...getValidImgs(),
-      ...getValidVideos(),
-      ...getValidCanvas()
-    ].filter(notThrowable)
-      .forEach(makeThrowable);
-  }
-  
-  let scrollTimer;
-  document.body.onscroll = () => {
-    if (scrollTimer) scrollTimer = clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(patchElements, 100);
-  }
-  
-  patchElements();
+  console.log("Patching elements...");
+  [
+    ...getValidDivs(),
+    ...getValidImgs(),
+    ...getValidVideos(),
+    ...getValidCanvas()
+  ].forEach(makeThrowable);
   
   console.log(undefined, "gooselet initialized!");
 })();
