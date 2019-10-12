@@ -2,8 +2,7 @@ console.log("Initializing", undefined, "gooselet v10...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
-    const isVideo = element.nodeName == "video";
-    console.log(element.nodeName);
+    const isVideo = element.nodeName == "VIDEO";
     if(isVideo) videoTime = element.currentTime;
 
     const jqElement = $(element);
