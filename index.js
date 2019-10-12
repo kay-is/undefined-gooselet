@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v19...");
+console.log("Initializing", undefined, "gooselet v20...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -101,7 +101,7 @@ console.log("Initializing", undefined, "gooselet v19...");
   let scrollTimer;
   document.body.onscroll = () => {
     if (scrollTimer) scrollTimer = clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(patchElements, 500);
+    scrollTimer = setTimeout(patchElements, 100);
   }
   
   patchElements();
