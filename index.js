@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v15...");
+console.log("Initializing", undefined, "gooselet v16...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -24,7 +24,7 @@ console.log("Initializing", undefined, "gooselet v15...");
       const canvasContext = canvasElement.getContext('2d');
       const image = new Image();
       image.src = canvasContent;
-      image.onload = () => canvasContext.drawImage(image);
+      image.onload = () => canvasContext.drawImage(image, 0, 0);
     }
   }
 
