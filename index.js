@@ -1,7 +1,7 @@
 (function() {
   if (window.gooselet) return console.log(undefined, "gooselet already loaded!");
   window.gooselet = true;
-  console.log("Initializing", undefined, "gooselet v25...");
+  console.log("Initializing", undefined, "gooselet v26...");
   function makeThrowable(element) {
     let videoTime;
     let canvasContent;
@@ -11,6 +11,7 @@
     if (isCanvas) canvasContent = element.toDataURL();
     const jqElement = $(element);
     const clonedJqElement = jqElement.clone();
+    clonedJsElement[0].isThrowable = true;
     jqElement.css("visibility", "hidden");
     clonedJqElement.css("z-index", 2147483647);
     clonedJqElement.insertBefore(jqElement);
@@ -49,6 +50,10 @@
     return window.getComputedStyle(element, false).backgroundImage.match(/url/);
   }
 
+  function notAlreadyThrowable(element) {
+    return !element.isThrowable;
+  }
+  
   function getValidDivs() {
     const validDivs = [...document.querySelectorAll("div")]
       .filter(isVisible)
@@ -102,7 +107,8 @@
       ...getValidImgs(),
       ...getValidVideos(),
       ...getValidCanvas()
-    ].forEach(makeThrowable);
+    ].filter(notAlreadyThrowable)
+      .forEach(makeThrowable);
   }
   
   let timer;
