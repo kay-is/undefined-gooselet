@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v11...");
+console.log("Initializing", undefined, "gooselet v12...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -54,16 +54,15 @@ console.log("Initializing", undefined, "gooselet v11...");
     return validVideos;
   }
 
-  [...getValidDivs(), ...getValidImgs(), ...getValidVideos()].forEach(makeThrowable);
-
   document.body.style.cursor = `url("https://kay-is.github.io/undefined-gooselet/goose.png"), default`;
 
-  const honk = new Audio(
-    "https://kay-is.github.io/undefined-gooselet/honk.mp3"
-  );
+  const honk = new Audio("https://kay-is.github.io/undefined-gooselet/honk.mp3");
   document.oncontextmenu = () => {
     honk.play();
     return false;
   };
+  
+  [...getValidDivs(), ...getValidImgs(), ...getValidVideos()].forEach(makeThrowable);
+
   console.log(undefined, "gooselet initialized!");
 })();
