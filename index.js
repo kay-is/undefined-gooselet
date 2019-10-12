@@ -1,4 +1,4 @@
-console.log(undefined, "gooselet v1 loaded!");
+console.log(undefined, "gooselet v2 loaded!");
 
 function makeThrowable(element) {
   const jqElement = $(element);
