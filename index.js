@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v20...");
+console.log("Initializing", undefined, "gooselet v21...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -17,6 +17,7 @@ console.log("Initializing", undefined, "gooselet v20...");
       damping: 100,
       collisionDectection: true
     });
+    clonedJqElement[0].isThrowable = true;
     if (isVideo) {
       const videoElement = clonedJqElement[0];
       videoElement.currentTime = videoTime;
@@ -46,11 +47,15 @@ console.log("Initializing", undefined, "gooselet v20...");
     return window.getComputedStyle(element, false).backgroundImage.match(/url/);
   }
 
+  function notThrowable(element) {
+    return !element.isThrowable;
+  }
+  
   function getValidDivs() {
     const validDivs = [...document.querySelectorAll("div")]
       .filter(isVisible)
       .filter(hasBackgroundImage);
-    console.log(
+    if(validDivs.length) console.log(
       "Visible <div>s with background-image found: " + validDivs.length
     );
     return validDivs;
@@ -58,7 +63,7 @@ console.log("Initializing", undefined, "gooselet v20...");
 
   function getValidImgs() {
     const validImgs = [...document.querySelectorAll("img")].filter(isVisible);
-    console.log("Visible <img>s found: " + validImgs.length);
+    if(validImgs.length) console.log("Visible <img>s found: " + validImgs.length);
     return validImgs;
   }
 
@@ -66,7 +71,7 @@ console.log("Initializing", undefined, "gooselet v20...");
     const validVideos = [...document.querySelectorAll("video")].filter(
       isVisible
     );
-    console.log("Visible <video>s found: " + validVideos.length);
+    if(validVideos.length) console.log("Visible <video>s found: " + validVideos.length);
     return validVideos;
   }
 
@@ -74,7 +79,7 @@ console.log("Initializing", undefined, "gooselet v20...");
     const validCanvas = [...document.querySelectorAll("canvas")].filter(
       isVisible
     );
-    console.log("Visible <canvas>' found: " + validCanvas.length);
+    if(validCanvas.length) console.log("Visible <canvas>' found: " + validCanvas.length);
     return validCanvas;
   }
 
@@ -95,7 +100,8 @@ console.log("Initializing", undefined, "gooselet v20...");
       ...getValidImgs(),
       ...getValidVideos(),
       ...getValidCanvas()
-    ].forEach(makeThrowable);
+    ].filter(notThrowable)
+      .forEach(makeThrowable);
   }
   
   let scrollTimer;
