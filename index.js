@@ -1,4 +1,4 @@
-console.log("Loading", undefined, "gooselet v4...");
+console.log("Initializing", undefined, "gooselet v5...");
 (function() {
   function makeThrowable(element) {
     const jqElement = $(element);
@@ -38,6 +38,12 @@ console.log("Loading", undefined, "gooselet v4...");
     console.log("Visible <img>s found: " + validImgs.length);
     return validImgs;
   }
+  
+  function getValidVideos() {
+    const validVideos = [...document.querySelectorAll("video")].filter(isVisible);
+    console.log("Visible <video>s found: " + validImgs.length);
+    return validVideos;
+  }
 
   [...getValidDivs(), ...getValidImgs()].forEach(makeThrowable);
 
@@ -47,5 +53,5 @@ console.log("Loading", undefined, "gooselet v4...");
     "https://kay-is.github.io/undefined-gooselet/honk.mp3"
   );
   document.oncontextmenu = () => honk.play();
-  document.oncontextmenu();
+  console.log(undefined, "gooselet initialized!");
 })();
