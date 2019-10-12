@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v8...");
+console.log("Initializing", undefined, "gooselet v9...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -12,9 +12,10 @@ console.log("Initializing", undefined, "gooselet v8...");
     clonedJqElement.insertBefore(jqElement);
     clonedJqElement.throwable({ bounce: 0.6, damping: 75 });
     if(isVideo) {
+      console.log("isVideo!");
       const videoElement = clonedJqElement[0];
       videoElement.currentTime = videoTime;
-      videoElement.removeAttribute("controls")
+      videoElement.removeAttribute("controls");
       videoElement.play();
     }
   }
