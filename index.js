@@ -1,5 +1,7 @@
-console.log("Initializing", undefined, "gooselet v24...");
 (function() {
+  if (window.gooselet) return console.log(undefined, "gooselet already loaded!");
+  window.gooselet = true;
+  console.log("Initializing", undefined, "gooselet v25...");
   function makeThrowable(element) {
     let videoTime;
     let canvasContent;
@@ -93,13 +95,21 @@ console.log("Initializing", undefined, "gooselet v24...");
     return false;
   };
 
-  console.log("Patching elements...");
-  [
-    ...getValidDivs(),
-    ...getValidImgs(),
-    ...getValidVideos(),
-    ...getValidCanvas()
-  ].forEach(makeThrowable);
-
+  function patchElements() {
+    console.log("Patching elements...");
+    [
+      ...getValidDivs(),
+      ...getValidImgs(),
+      ...getValidVideos(),
+      ...getValidCanvas()
+    ].forEach(makeThrowable);
+  }
+  
+  let timer;
+  document.body.onscroll = () => {
+    if (timer) timer = clearTimeout(timer);
+    timer = setTimeout(patchElements, 100);
+  };
   console.log(undefined, "gooselet initialized!");
+  patchElements();
 })();
