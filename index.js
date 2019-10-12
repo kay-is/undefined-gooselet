@@ -1,9 +1,12 @@
-console.log("Initializing", undefined, "gooselet v13...");
+console.log("Initializing", undefined, "gooselet v14...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
+    let canvasContent;
     const isVideo = element.nodeName == "VIDEO";
+    const isCanvas = element.nodeName == "CANVAS";
     if (isVideo) videoTime = element.currentTime;
+    if (isCanvas) canvasContent = element.toDataURL();
     const jqElement = $(element);
     const clonedJqElement = jqElement.clone();
     jqElement.css("visibility", "hidden");
@@ -15,6 +18,13 @@ console.log("Initializing", undefined, "gooselet v13...");
       videoElement.currentTime = videoTime;
       videoElement.removeAttribute("controls");
       videoElement.play();
+    }
+    if (isCanvas) {
+      const canvasElement = clonedJqElement[0];
+      const canvasContext = canvasElement.getContext('2d');
+      const image = new Image();
+      image.src = canvasContent;
+      image.onload = () => canvasContext.drawImage(image);
     }
   }
 
