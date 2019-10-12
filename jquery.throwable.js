@@ -166,7 +166,7 @@ function $A(e){if(!e)return[];if(e.toArray)return e.toArray();var t=e.length||0,
                     this.bodies.push(body);
                     
                     // Clean position dependencies
-                    $("body").append($elem);
+                    //$("body").append($elem);
                     $("body").css({
                         "position":"static",
                         "margin":0
