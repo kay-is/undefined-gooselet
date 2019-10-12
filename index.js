@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v18...");
+console.log("Initializing", undefined, "gooselet v19...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -88,12 +88,23 @@ console.log("Initializing", undefined, "gooselet v18...");
     return false;
   };
 
-  [
-    ...getValidDivs(),
-    ...getValidImgs(),
-    ...getValidVideos(),
-    ...getValidCanvas()
-  ].forEach(makeThrowable);
-
+  function patchElements() {
+    console.log("Patching elements...");
+    [
+      ...getValidDivs(),
+      ...getValidImgs(),
+      ...getValidVideos(),
+      ...getValidCanvas()
+    ].forEach(makeThrowable);
+  }
+  
+  let scrollTimer;
+  document.body.onscroll = () => {
+    if (scrollTimer) scrollTimer = clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(patchElements, 500);
+  }
+  
+  patchElements();
+  
   console.log(undefined, "gooselet initialized!");
 })();
