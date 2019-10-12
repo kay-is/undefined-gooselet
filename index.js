@@ -1,12 +1,22 @@
-console.log("Initializing", undefined, "gooselet v7...");
+console.log("Initializing", undefined, "gooselet v8...");
 (function() {
   function makeThrowable(element) {
+    let videoTime;
+    const isVideo = element.nodeName == "video";
+    if(isVideo) videoTime = element.currentTime;
+
     const jqElement = $(element);
     const clonedJqElement = jqElement.clone();
     jqElement.css("visibility", "hidden");
     clonedJqElement.css("z-index", 2147483647);
     clonedJqElement.insertBefore(jqElement);
     clonedJqElement.throwable({ bounce: 0.6, damping: 75 });
+    if(isVideo) {
+      const videoElement = clonedJqElement[0];
+      videoElement.currentTime = videoTime;
+      videoElement.removeAttribute("controls")
+      videoElement.play();
+    }
   }
 
   function isVisible(element) {
@@ -52,6 +62,9 @@ console.log("Initializing", undefined, "gooselet v7...");
   const honk = new Audio(
     "https://kay-is.github.io/undefined-gooselet/honk.mp3"
   );
-  document.oncontextmenu = () => honk.play();
+  document.oncontextmenu = () => {
+    honk.play();
+    return false;
+  };
   console.log(undefined, "gooselet initialized!");
 })();
