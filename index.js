@@ -11,7 +11,7 @@
     if (isCanvas) canvasContent = element.toDataURL();
     const jqElement = $(element);
     const clonedJqElement = jqElement.clone();
-    clonedJsElement[0].isThrowable = true;
+    clonedJqElement[0].isThrowable = true;
     jqElement.css("visibility", "hidden");
     clonedJqElement.css("z-index", 2147483647);
     clonedJqElement.insertBefore(jqElement);
