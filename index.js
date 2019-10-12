@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v14...");
+console.log("Initializing", undefined, "gooselet v15...");
 (function() {
   function makeThrowable(element) {
     let videoTime;
@@ -70,7 +70,7 @@ console.log("Initializing", undefined, "gooselet v14...");
     const validCanvas = [...document.querySelectorAll("canvas")].filter(
       isVisible
     );
-    console.log("Visible <video>s found: " + validCanvas.length);
+    console.log("Visible <canvas>' found: " + validCanvas.length);
     return validCanvas;
   }
 
