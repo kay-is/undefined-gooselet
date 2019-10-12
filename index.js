@@ -1,4 +1,4 @@
-console.log("Initializing", undefined, "gooselet v6...");
+console.log("Initializing", undefined, "gooselet v7...");
 (function() {
   function makeThrowable(element) {
     const jqElement = $(element);
@@ -41,7 +41,7 @@ console.log("Initializing", undefined, "gooselet v6...");
   
   function getValidVideos() {
     const validVideos = [...document.querySelectorAll("video")].filter(isVisible);
-    console.log("Visible <video>s found: " + validImgs.length);
+    console.log("Visible <video>s found: " + validVideos.length);
     return validVideos;
   }
 
