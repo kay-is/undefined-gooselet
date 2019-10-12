@@ -18,7 +18,7 @@ function isVisible(element) {
 }
 
 function hasBackgroundImage(element) {
-  return window.getComputedStyle(div, false).backgroundImage.match(/url/);
+  return window.getComputedStyle(element, false).backgroundImage.match(/url/);
 }
 
 function getValidDivs() {
